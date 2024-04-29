@@ -37,26 +37,26 @@ jobs:
       #   run: dotnet test -c Release --no-restore --no-build
 
      
-      - name: remove unused packages
-        run: |
-          cd ./nugetPackages
-          # rm -fo !(EasyAbp.*)
-          powershell -Command "rm -fo *.nupkg"
-          # rm -fo *.Blazor.Host.*
-          # rm -fo *.Blazor.Server.Host.*
-          # rm -fo *.Host.Shared.*
-          # rm -fo *.HttpApi.Host.*
-          # rm -fo *.IdentityServer.*
-          # rm -fo *.AuthServer.*
-          # rm -fo *.Web.Host.*
-          # rm -fo *.Web.Unified.*
-          # rm -fo *.HttpApi.Client.ConsoleTestApp.*
-          # rm -fo *.Tests.*
-          # rm -fo *.TestBase.*
-          ls
+      # - name: remove unused packages
+      #   run: |
+      #     cd ./nugetPackages
+      #     # rm -fo !(EasyAbp.*)
+      #     powershell -Command "rm -fo *.nupkg"
+      #     # rm -fo *.Blazor.Host.*
+      #     # rm -fo *.Blazor.Server.Host.*
+      #     # rm -fo *.Host.Shared.*
+      #     # rm -fo *.HttpApi.Host.*
+      #     # rm -fo *.IdentityServer.*
+      #     # rm -fo *.AuthServer.*
+      #     # rm -fo *.Web.Host.*
+      #     # rm -fo *.Web.Unified.*
+      #     # rm -fo *.HttpApi.Client.ConsoleTestApp.*
+      #     # rm -fo *.Tests.*
+      #     # rm -fo *.TestBase.*
+      #     ls
       - name: dotnet pack
         run: dotnet pack -c Release --no-build --output ./nugetPackages
-        
+
       - name: dotnet nuget push to NuGet
         run:  |
           cd ./nugetPackages
