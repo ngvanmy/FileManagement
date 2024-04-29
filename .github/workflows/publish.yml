@@ -41,7 +41,6 @@ jobs:
       - name: remove unused packages
         run: |
           cd ./nugetPackages
-          shopt -s extglob
           rm -f !(EasyAbp.*)
           rm -f !(*.${{ steps.getVersion.outputs.first_match }}.nupkg)
           rm -f *.Blazor.Host.*
@@ -57,7 +56,7 @@ jobs:
           rm -f *.TestBase.*
           ls
       - name: dotnet nuget push to NuGet
-        run: dotnet nuget push -s /nugetPackages/*.nupkg https://nuget.itquynhon.net/nuget -k "761bbededb5e41f1b1bd22e676f5821b"  --skip-duplicate
+        run: dotnet nuget push -s //nugetPackages/*.nupkg https://nuget.itquynhon.net/nuget -k "761bbededb5e41f1b1bd22e676f5821b"  --skip-duplicate
 
       # - name: remove unused packages
       #   run: |
