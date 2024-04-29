@@ -38,6 +38,9 @@ jobs:
 
       - name: dotnet pack
         run: dotnet pack -c Release --no-build --output .
+        
+      - name: dotnet nuget push to NuGet
+        run: dotnet nuget push /*.nupkg -k  -s https://nuget.itquynhon.net/nuget "761bbededb5e41f1b1bd22e676f5821b"  --skip-duplicate
 
       # - name: remove unused packages
       #   run: |
