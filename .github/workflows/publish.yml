@@ -41,7 +41,7 @@ jobs:
       - name: remove unused packages
         run: |
           cd ./nugetPackages
-          rm -fo !(EasyAbp.*)
+          # rm -fo !(EasyAbp.*)
           rm -fo !(*.${{ steps.getVersion.outputs.first_match }}.nupkg)
           rm -fo *.Blazor.Host.*
           rm -fo *.Blazor.Server.Host.*
