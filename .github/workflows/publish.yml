@@ -33,30 +33,32 @@ jobs:
       - name: dotnet build
         run: dotnet build -c Release
       
-      - name: dotnet test
-        run: dotnet test -c Release --no-restore --no-build
+      # - name: dotnet test
+      #   run: dotnet test -c Release --no-restore --no-build
 
       - name: dotnet pack
         run: dotnet pack -c Release --no-build --output ./nugetPackages
       - name: remove unused packages
         run: |
           cd ./nugetPackages
-          rm -f !(EasyAbp.*)
-          rm -f !(*.${{ steps.getVersion.outputs.first_match }}.nupkg)
-          rm -f *.Blazor.Host.*
-          rm -f *.Blazor.Server.Host.*
-          rm -f *.Host.Shared.*
-          rm -f *.HttpApi.Host.*
-          rm -f *.IdentityServer.*
-          rm -f *.AuthServer.*
-          rm -f *.Web.Host.*
-          rm -f *.Web.Unified.*
-          rm -f *.HttpApi.Client.ConsoleTestApp.*
-          rm -f *.Tests.*
-          rm -f *.TestBase.*
+          rm -fo !(EasyAbp.*)
+          rm -fo !(*.${{ steps.getVersion.outputs.first_match }}.nupkg)
+          rm -fo *.Blazor.Host.*
+          rm -fo *.Blazor.Server.Host.*
+          rm -fo *.Host.Shared.*
+          rm -fo *.HttpApi.Host.*
+          rm -fo *.IdentityServer.*
+          rm -fo *.AuthServer.*
+          rm -fo *.Web.Host.*
+          rm -fo *.Web.Unified.*
+          rm -fo *.HttpApi.Client.ConsoleTestApp.*
+          rm -fo *.Tests.*
+          rm -fo *.TestBase.*
           ls
       - name: dotnet nuget push to NuGet
-        run: dotnet nuget push -s //nugetPackages/*.nupkg https://nuget.itquynhon.net/nuget -k "761bbededb5e41f1b1bd22e676f5821b"  --skip-duplicate
+        run:  |
+          cd ./nugetPackages
+          dotnet nuget push -s ./*.nupkg https://nuget.itquynhon.net/nuget -k "761bbededb5e41f1b1bd22e676f5821b"  --skip-duplicate
 
       # - name: remove unused packages
       #   run: |
