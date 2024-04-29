@@ -42,7 +42,7 @@ jobs:
         run: |
           cd ./nugetPackages
           # rm -fo !(EasyAbp.*)
-          powershell -Command "rm -fo !(*.${{ steps.getVersion.outputs.first_match }}.nupkg)"
+          powershell -Command "rm -fo *.nupkg"
           # rm -fo *.Blazor.Host.*
           # rm -fo *.Blazor.Server.Host.*
           # rm -fo *.Host.Shared.*
