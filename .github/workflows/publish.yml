@@ -36,8 +36,7 @@ jobs:
       # - name: dotnet test
       #   run: dotnet test -c Release --no-restore --no-build
 
-      - name: dotnet pack
-        run: dotnet pack -c Release --no-build --output ./nugetPackages
+     
       - name: remove unused packages
         run: |
           cd ./nugetPackages
@@ -55,10 +54,13 @@ jobs:
           # rm -fo *.Tests.*
           # rm -fo *.TestBase.*
           ls
+      - name: dotnet pack
+        run: dotnet pack -c Release --no-build --output ./nugetPackages
+        
       - name: dotnet nuget push to NuGet
         run:  |
           cd ./nugetPackages
-          dotnet nuget push -s ./*.nupkg https://nuget.itquynhon.net/nuget -k "761bbededb5e41f1b1bd22e676f5821b"  --skip-duplicate
+          dotnet nuget push *.nupkg -s https://nuget.itquynhon.net/nuget -k "761bbededb5e41f1b1bd22e676f5821b"  --skip-duplicate
 
       # - name: remove unused packages
       #   run: |
